@@ -127,7 +127,7 @@ namespace spec
 				Assert::AreEqual(-1, 0, L"NULL pointer thrown", 1, 2);
 			}
 		};
-		[TestMethod, Timeout(1000)]
+		[TestMethod, Timeout(1000000)]
 		void Sample2_Problem4()
 		{
 			int b1[] = { 20,5,30 };

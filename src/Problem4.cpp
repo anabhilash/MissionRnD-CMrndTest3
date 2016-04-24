@@ -7,7 +7,7 @@ Example 1:
 Input : 
    20        25
   /  \      /  \
- 5    30   10   35
+ 5	 30   10   35
 Output :
 Bst 1 :
      20
@@ -30,12 +30,35 @@ Difficulty : Medium -Hard
 #include <stdlib.h>
 #include <stdio.h>
 
-struct node{
+struct node
+{
 	int data;
 	struct node *left;
 	struct node *right;
 };
+void insert(struct node **, struct node **);
+void merge(struct node *, struct node *);
+void merge_two_bst(struct node *root1, struct node *root2)
+{
+	if (root2 != NULL && root1 != NULL)
+	{
+		merge(root1, root2);
+	}
+}
+void merge(struct node *root1, struct node *root2)
+{
+	if (root2 == NULL)
+	{
+		return;
+	}
+	else
+	{
+		merge(root1, root2->left);
+		merge(root1, root2->right);
+		insert(&root1, &root2);
+	}
+}
+void insert(struct node **root1, struct node **root2)
+{
 
-void merge_two_bst(struct node *root1, struct node *root2){
-	
 }

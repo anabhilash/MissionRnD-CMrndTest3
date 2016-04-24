@@ -60,17 +60,62 @@ Difficulty : Medium +
 #include <stdlib.h>
 #include <stdio.h>
 
-struct node_dll{
+struct node_dll
+{
 	int data;
 	struct node_dll *next;
 	struct node_dll *prev;
 };
-struct node{
+struct node
+{
 	int data;
 	struct node *left;
 	struct node *right;
 };
-
-int is_identical(struct node_dll *head, struct node *root){
-	return -1;
+void check(struct node_dll **, struct node *,int *mask);
+//int compare(int, int);
+int is_identical(struct node_dll *head, struct node *root)
+{
+	if (head == NULL || root == NULL)
+	{
+		return -1;
+	}
+	else
+	{
+		int mask = 1;
+		check(&head, root, &mask);
+		if (head == NULL)
+		{
+			if (mask == 1)
+			{
+				return 1;
+			}
+		}
+		else
+		{
+			return 0;
+		}
+		
+	}
+}
+void check(struct node_dll **head, struct node *root, int *mask)
+{
+	if (root == NULL)
+	{
+		return;
+	}
+	else
+	{
+		check(head, root->left, mask);
+		if ((root->data) == ((*head)->data))
+		{
+			(*head) = (*head)->next;
+		}
+		else if ((root->data) != ((*head)->data))
+		{
+			*mask = 0;
+			return;
+		}
+		check(head, root->right, mask);
+	}
 }

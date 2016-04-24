@@ -50,7 +50,32 @@ struct node{
 	struct node *right;
 };
 
-
-int get_missing_value(struct node *root,int n){
-    return -1;
+void getxor(struct node *,int *);
+int get_missing_value(struct node *root,int n)
+{
+	if (root == NULL || n <= 0)
+	{
+		return -1;
+	}
+	else
+	{
+		int i = 1,mask=0;
+		//int value=0;
+		for (i = 1; i <= n; i++)
+		{
+			mask = mask^i;
+		}
+		getxor(root,&mask);
+		return mask;
+	}
+}
+void getxor(struct node *root,int *value)
+{
+	if (root == NULL)
+	{
+		return;
+	}
+	getxor(root->left,value);
+	(*value) = (*value) ^ (root->data);
+	getxor(root->right,value);
 }
